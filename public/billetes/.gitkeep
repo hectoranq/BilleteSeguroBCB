@@ -1,0 +1,8 @@
+# Coloca aquí las imágenes de los billetes
+
+Archivos esperados:
+- billete-10bs.jpg o billete-10bs.png
+- billete-20bs.jpg o billete-20bs.png  
+- billete-50bs.jpg o billete-50bs.png
+
+Las imágenes deben mostrar claramente el número de serie en la esquina superior derecha del billete.
