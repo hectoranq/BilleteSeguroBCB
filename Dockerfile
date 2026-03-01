@@ -25,6 +25,9 @@ ENV NODE_ENV=production
 # Build the application
 RUN npm run build
 
+# Ensure public directory exists
+RUN mkdir -p /app/public
+
 # Install only production dependencies for final stage
 RUN npm ci --only=production
 
@@ -47,8 +50,8 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy public directory (create if doesn't exist)
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public 2>/dev/null || mkdir -p ./public
+# Copy public directory if it exists
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 USER nextjs
 
