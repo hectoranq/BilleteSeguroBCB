@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 // Google Analytics ID - Configurar en variables de entorno
-const GA_ID = "G-G4TNVY2LG8";
+const GA_ID = "G-9XXJ4KPYFH";
 
 export const metadata: Metadata = {
   title: "Validador de Billetes BCB",
