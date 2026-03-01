@@ -1,0 +1,21 @@
+{
+  "name": "BilleteSeguroBCB",
+  "description": "Validador de Billetes del Banco Central de Bolivia",
+  "type": "dockerfile",
+  "port": 3000,
+  "dockerfile": "./Dockerfile",
+  "healthcheck": {
+    "path": "/",
+    "interval": 30,
+    "timeout": 10,
+    "retries": 3
+  },
+  "resources": {
+    "memory": "512Mi",
+    "cpu": "0.5"
+  },
+  "environment": {
+    "NODE_ENV": "production",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  }
+}
