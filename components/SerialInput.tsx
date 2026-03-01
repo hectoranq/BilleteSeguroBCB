@@ -23,7 +23,10 @@ export default function SerialInput({
   const handleValidate = () => {
     if (!serial.trim()) return;
 
-    const result = checkBlacklist(serial, denomination);
+    // Agregar automáticamente " B" al final si es ingreso manual
+    const serialWithClass = serial.trim() + " B";
+    
+    const result = checkBlacklist(serialWithClass, denomination);
     onValidation(result);
 
     // Save to history
@@ -63,36 +66,43 @@ export default function SerialInput({
       {showHelp && (
         <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg text-sm text-blue-800 dark:text-blue-200">
           El número de serie se encuentra en la parte superior derecha del billete.
-          Formato: 9 dígitos + espacio + clase (ejemplo: 295095770 A).
+          Formato: Solo 9 dígitos (ejemplo: 295095770). La clase B se asigna automáticamente.
         </div>
       )}
 
-      <div className="relative group mb-3">
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">
-          barcode_scanner
-        </span>
-        <input
-          type="text"
-          value={serial}
-          onChange={(e) => setSerial(e.target.value.toUpperCase())}
-          onKeyPress={handleKeyPress}
-          className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl focus:border-primary dark:focus:border-primary focus:ring-0 focus:outline-none transition-all text-lg font-mono tracking-widest uppercase"
-          placeholder="Ej: 295095770 A"
-          maxLength={11}
-        />
-        <button
-          onClick={handleValidate}
-          disabled={!serial.trim()}
-          className="absolute right-3 top-1/2 -translate-y-1/2 bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-        >
-          <Search className="h-4 w-4" />
-          Validar
-        </button>
+      <div className="mb-3 space-y-2 md:space-y-0">
+        <div className="relative group">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">
+            barcode_scanner
+          </span>
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={serial}
+            onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, '');
+              setSerial(value);
+            }}
+            onKeyPress={handleKeyPress}
+            className="w-full pl-12 pr-4 md:pr-28 py-4 bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl focus:border-primary dark:focus:border-primary focus:ring-0 focus:outline-none transition-all text-lg font-mono tracking-widest"
+            placeholder="Ej: 295095770"
+            maxLength={9}
+          />
+          <button
+            onClick={handleValidate}
+            disabled={!serial.trim()}
+            className="w-full md:w-auto md:absolute md:right-3 md:top-1/2 md:-translate-y-1/2 bg-primary text-white px-6 py-3 md:py-2 rounded-lg font-bold text-sm hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            <Search className="h-4 w-4" />
+            Validar
+          </button>
+        </div>
       </div>
 
       <div className="space-y-3">
         <p className="text-xs text-slate-400">
-          El formato debe coincidir con la serie oficial (9 dígitos + espacio + clase A o B).
+          Ingrese solo los 9 dígitos del número de serie. Los billetes ingresados manualmente se validan como clase B.
         </p>
         <button
           onClick={onOpenScanner}
