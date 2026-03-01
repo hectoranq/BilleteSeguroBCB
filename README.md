@@ -52,7 +52,53 @@ npm run build
 npm start
 ```
 
-## 📸 Configuración de Imágenes (Opcional)
+## � Docker
+
+### Construcción y Despliegue con Docker
+
+```bash
+# Construir la imagen
+docker build -t billete-seguro-bcb .
+
+# Ejecutar el contenedor
+docker run -p 3000:3000 billete-seguro-bcb
+```
+
+### Usando Docker Compose
+
+```bash
+# Construir y ejecutar
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f
+
+# Detener
+docker-compose down
+```
+
+La aplicación estará disponible en `http://localhost:3000`
+
+### Despliegue en Coolify u otros PaaS
+
+**Coolify (Recomendado)** - Ver guía completa en [COOLIFY.md](COOLIFY.md)
+
+Pasos rápidos:
+1. Conecta tu repositorio Git a Coolify
+2. Coolify detecta automáticamente el Dockerfile
+3. Configura puerto: `3000`
+4. Despliega
+
+Coolify configurará automáticamente SSL, health checks y auto-deploys.
+
+**Otros PaaS compatibles:**
+- Railway: Detecta Dockerfile automáticamente
+- Render: Selecciona "Docker" como entorno
+- Fly.io: `flyctl launch` detectará la configuración
+
+El Dockerfile usa multi-stage builds optimizados para cualquier plataforma Docker.
+
+## �📸 Configuración de Imágenes (Opcional)
 
 Para mejorar la guía visual, puedes agregar imágenes reales de billetes:
 
@@ -171,7 +217,20 @@ colors: {
 }
 ```
 
-## 🚀 Despliegue en Vercel
+## 🚀 Despliegue
+
+### Opción 1: Coolify (Auto-hospedado)
+
+**Recomendado para control total y privacidad.**
+
+1. Sigue la guía completa en **[COOLIFY.md](COOLIFY.md)**
+2. Conecta tu repositorio Git
+3. Coolify detecta automáticamente el Dockerfile
+4. Configura dominio y despliega
+
+Incluye: SSL automático, health checks, auto-deploys, zero-downtime.
+
+### Opción 2: Vercel
 
 1. Empuja tu código a GitHub
 2. Importa el proyecto en [Vercel](https://vercel.com)
