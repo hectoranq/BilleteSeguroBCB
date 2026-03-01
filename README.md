@@ -12,6 +12,7 @@ Sistema de validación de billetes del Banco Central de Bolivia. Permite verific
 - 📱 **Diseño responsive** para móviles, tablets y desktop
 - 💾 **Almacenamiento local** sin necesidad de backend
 - 📥 **Exportar datos** a CSV (historial y rangos)
+- 📊 **Google Analytics** integrado (opcional)
 
 ## 🛠️ Tecnologías
 
@@ -216,6 +217,20 @@ colors: {
   }
 }
 ```
+
+### Configurar Google Analytics (Opcional)
+
+Para rastrear estadísticas de uso con Google Analytics:
+
+1. Obtén tu Measurement ID en [Google Analytics](https://analytics.google.com)
+2. Configura la variable de entorno:
+   ```bash
+   # .env.local (desarrollo)
+   NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+   ```
+3. En producción, configura la variable en tu plataforma (Coolify/Vercel)
+
+Ver guía completa en [docs/GOOGLE_ANALYTICS.md](docs/GOOGLE_ANALYTICS.md)
 
 ## 🚀 Despliegue
 

@@ -26,10 +26,25 @@ Guía completa para desplegar BilleteSeguroBCB en Coolify.
 
 ### 3. Variables de Entorno (Opcional)
 
+Variables de entorno recomendadas:
+
 ```env
 NODE_ENV=production
 NEXT_TELEMETRY_DISABLED=1
 ```
+
+**Google Analytics (Opcional):**
+
+Para habilitar el seguimiento con Google Analytics:
+
+1. Crea una propiedad en [Google Analytics](https://analytics.google.com)
+2. Obtén tu Measurement ID (formato: `G-XXXXXXXXXX`)
+3. Agrega en Coolify → Environment Variables:
+   ```env
+   NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+   ```
+
+**Nota**: Las variables que comienzan con `NEXT_PUBLIC_` son accesibles en el cliente.
 
 ### 4. Configuración de Red
 
