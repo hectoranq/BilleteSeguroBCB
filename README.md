@@ -122,12 +122,13 @@ Para mejorar la guía visual, puedes agregar imágenes reales de billetes:
 ### Validación Manual
 
 1. Selecciona la denominación del billete (10, 20 o 50 Bs)
-2. Ingresa el número de serie en el formato: **9 dígitos + espacio + clase** (ej: 295095770 A)
+2. Ingresa solo los **9 dígitos** del número de serie (ej: 295095770)
 3. Presiona "Validar" para verificar si el billete está en la lista negra
+4. **Nota:** Los billetes ingresados manualmente se validan automáticamente como clase B
 
 ### Escaneo con Cámara
 
-1. Haz clic en el botón "Escanear" 
+1. Haz clic en el botón "Escanear con Cámara" 
 2. Permite el acceso a la cámara
 3. Alinea el número de serie dentro del marco
 4. Captura la foto
